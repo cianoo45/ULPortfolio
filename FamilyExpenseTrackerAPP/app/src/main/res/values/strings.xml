@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Family Expense Tracker</string>
+
+    <string-array name="kids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="money">
+    <item>Euro</item>
+    <item>Sterling</item>
+    <item>Dollar</item>
+</string-array>
+
+
+
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Leisure</item>
+        <item>Bills</item>
+        <item>Alcohol</item>
+        <item>Health</item>
+        <item>Travel</item>
+    </string-array>
+
+    <string-array name="categories2">
+        <item>All</item>
+        <item>Food</item>
+        <item>Leisure</item>
+        <item>Bills</item>
+        <item>Alcohol</item>
+        <item>Health</item>
+        <item>Travel</item>
+    </string-array>
+</resources>
