@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+<head>
+    <title>Tic Tac Toe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/tictactoe.css"/>
+</head>
+<body bgcolor='#1c1c1b'>
+ <h1 style="color:#eded21" align="center">Tic Tac Toe vs AI</h1>
+ 
+ <div >
+ 			
+ 			<div class="game-board">
+ 				<div class="box" th:text="${board.textAt(0,0)}" onclick="document.location.href = '/move?row=0&col=0'; return false">?</div>
+ 				<div class="box" th:text="${board.textAt(0,1)}" onclick="document.location.href = '/move?row=0&col=1'; return false">?</div>
+ 				<div class="box" th:text="${board.textAt(0,2)}" onclick="document.location.href = '/move?row=0&col=2'; return false">?</div>
+ 				<div class="box"  th:text="${board.textAt(1,0)}" onclick="document.location.href = '/move?row=1&col=0'; return false">?</div>
+ 				<div class="box"  th:text="${board.textAt(1,1)}" onclick="document.location.href = '/move?row=1&col=1'; return false">?</div>
+ 				<div class="box"  th:text="${board.textAt(1,2)}" onclick="document.location.href = '/move?row=1&col=2'; return false">?</div>
+ 				<div class="box"  th:text="${board.textAt(2,0)}" onclick="document.location.href = '/move?row=2&col=0'; return false">?</div>
+ 				<div class="box"  th:text="${board.textAt(2,1)}" onclick="document.location.href = '/move?row=2&col=1'; return false">?</div>
+ 				<div class="box" th:text="${board.textAt(2,2)}" onclick="document.location.href = '/move?row=2&col=2'; return false">?</div>
+    		</div>
+ 			<p></p>
+ 			
+			<p><a href="/reset">Start over</a></p>
+    	</div>
+	
+</body>
+</html>
