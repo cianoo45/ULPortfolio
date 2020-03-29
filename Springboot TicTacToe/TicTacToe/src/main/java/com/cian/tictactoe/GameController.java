@@ -62,7 +62,10 @@ public class GameController {
 			checkBoard();
 			
 			//If the game is not over, AI will take a move
-			miniMaxMove();
+			int[] move =findBestMove();
+			if(move[0]!=-1) {
+				currentSession.getBoard().move(move[0], move[1], GridText.O);
+			}
 			checkBoard();
 			
 		}
@@ -106,27 +109,108 @@ public class GameController {
 		}
 	}
 	
-	public void miniMaxMove(){
-		//This is absoloutely not minimax, just here for testing
-		 if(currentSession.getBoard().textAt(1, 1).equals(" ")){
-			 currentSession.getBoard().move(1, 1, GridText.O);
-		 }else if(currentSession.getBoard().textAt(0, 0).equals(" ")) {
-			 currentSession.getBoard().move(0, 0, GridText.O);
-		 }else if(currentSession.getBoard().textAt(2, 0).equals(" ")) {
-			 currentSession.getBoard().move(2, 0, GridText.O);
-		 }else if(currentSession.getBoard().textAt(0, 2).equals(" ")) {
-			 currentSession.getBoard().move(0, 2, GridText.O);
-		 }else if(currentSession.getBoard().textAt(2, 2).equals(" ")) {
-			 currentSession.getBoard().move(2, 2, GridText.O);
-		 }else if(currentSession.getBoard().textAt(0, 1).equals(" ")) {
-			 currentSession.getBoard().move(0, 1, GridText.O);
-		 }else if(currentSession.getBoard().textAt(1, 0).equals(" ")) {
-			 currentSession.getBoard().move(1, 0, GridText.O);
-		 }else if(currentSession.getBoard().textAt(1, 2).equals(" ")) {
-			 currentSession.getBoard().move(1, 2, GridText.O);
-		 }else if(currentSession.getBoard().textAt(2, 1).equals(" ")) {
-			 currentSession.getBoard().move(2, 1, GridText.O);
+	public int miniMaxMove(int depth, boolean isMax){
+		
+		 //Check if game is already over
+		 if(currentSession.getBoard().checkWin(GridText.X)) {
+			 return -10;
+		 }else if(currentSession.getBoard().checkWin(GridText.O)) {
+			 return 10;
+		 }else if(currentSession.getBoard().isDraw()) {
+			return 0;
 		 }
+		 
+		 if(isMax) {
+		 int best = -1000; 
+		 
+		  
+	        // Traverse all cells 
+	        for (int i = 0; i < 3; i++) 
+	        { 
+	            for (int j = 0; j < 3; j++) 
+	            { 
+	                // Check if cell is empty 
+	                if (currentSession.getBoard().textAt(i,j)==" ") 
+	                { 
+	                    // Make the move 
+	                	currentSession.getBoard().move(i, j, GridText.O);
+	                 
+	  
+	                    // Call minimax recursively and choose 
+	                    // the maximum value 
+	                    best = Math.max(best, miniMaxMove(depth + 1, !isMax)); 
+	  
+	                    // Undo the move 
+	                    currentSession.getBoard().clearSquare(i, j);
+	                } 
+	            } 
+	        }
+	        return best;
+		 }else {
+			 int best = 1000; 
+			  
+		        // Traverse all cells 
+		        for (int i = 0; i < 3; i++) 
+		        { 
+		            for (int j = 0; j < 3; j++) 
+		            { 
+		                // Check if cell is empty 
+		                if (currentSession.getBoard().textAt(i, j) == " ") 
+		                { 
+		                    // Make the move 
+		                    currentSession.getBoard().move(i, j, GridText.X); 
+		  
+		                    // Call minimax recursively and choose 
+		                    // the minimum value 
+		                    best = Math.min(best, miniMaxMove( depth + 1, !isMax)); 
+		  
+		                    // Undo the move 
+		                    currentSession.getBoard().clearSquare(i, j);
+		                } 
+		            } 
+		        } 
+		        return best; 
+		 }
+	}
+	
+	public int[] findBestMove() {
+		int bestval =-1000;
+		int[] move= {-1,-1};
+		
+		// Traverse all cells, evaluate minimax function  
+	    // for all empty cells. And return the cell  
+	    // with optimal value. 
+	    for (int i = 0; i < 3; i++) 
+	    { 
+	        for (int j = 0; j < 3; j++) 
+	        { 
+	            // Check if cell is empty 
+	            if (currentSession.getBoard().textAt(i, j) == " ") 
+	            { 
+	                // Make the move 
+	                 currentSession.getBoard().move(i, j, GridText.O);
+	  
+	                // compute evaluation function for this 
+	                // move. 
+	                int moveVal = miniMaxMove( 0, false); 
+	  
+	                // Undo the move 
+	                currentSession.getBoard().clearSquare(i, j);
+	  
+	                // If the value of the current move is 
+	                // more than the best value, then update 
+	                // best/ 
+	                if (moveVal > bestval) 
+	                { 
+	                    move[0]=i;
+	                    move[1]=j;
+	                    bestval = moveVal; 
+	                } 
+	            } 
+	        } 
+	    } 
+		
+		return move;
 		
 	}
 

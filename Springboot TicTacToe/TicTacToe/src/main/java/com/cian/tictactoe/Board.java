@@ -62,6 +62,10 @@ public class Board {
 		}
 	}
 	
+	public void clearSquare(int row, int col) {
+		gameBoard[row][col] = GridText.NONE;
+	}
+	
 	
 	/**
 	 * Check if the specified player (X or O) won the game
