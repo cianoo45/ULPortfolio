@@ -13,9 +13,6 @@ nameVectorTupleList=[]
 
 playerDf = pd.read_csv('players_20.csv')
 playerDetails = pd.read_csv('players_20_details.csv')
-playerDetails = playerDetails.loc[playerDetails['team_position'] != "GK"]
-playerDetails.to_csv('players_20_details.csv')
-
 
 playerNames = playerDf['short_name']
 
