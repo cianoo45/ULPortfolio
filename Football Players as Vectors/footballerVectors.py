@@ -1,11 +1,5 @@
 import math
 
-import numpy as np
-from sklearn.preprocessing import normalize
-import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA
-from numpy import dot
-from numpy.linalg import norm
 
 import pandas as pd
 nameVectorTupleList=[]
