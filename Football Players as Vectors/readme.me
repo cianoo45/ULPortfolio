@@ -1,1 +1,14 @@
+Project that plots Football players as Vectors (Using around 40 attributes taken from Fifa 20 database). 
+This then allows you to calculate cosine similarity to find Stylisticly similiar players. 
 
+For example:
+Most similiar players to: P. Pogba
+[['R. Malinovskyi', 0.9844936341201354], ['M. Pašalić', 0.9829884320441087], ['D. Alli', 0.9819032008467128], ['M. Sanson', 0.9798972825920069], ['Lucas Paquetá', 0.9792603916442798]]
+
+Filters can also be applied on this to limit your search by Age, rating, Value, potential and nationality
+Say we wanted to find the Players most like Van Djik, with a minimun rating of 70 from Ireland, we would get:
+
+Most similiar players to: V. van Dijk
+[['C. Clark', 0.9644316197543011], ['R. Keogh', 0.9598690412049672], ['J. Egan', 0.9597981791958415], ['G. Dicker', 0.9583184360931684], ['D. Lenihan', 0.9581338408155621]]
+
+This project is a sample of something that could be used by clubs to search for transfers. If they wanted to replace a player who was leaving, they could simply search for a player stylisticly similiar to the player leaving, within their budget.
